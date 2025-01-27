@@ -1,0 +1,428 @@
+@charset "UTF-8";
+@import url("../Geral/Geral.css");
+body button#Btn_Voltar {
+  top: 10px;
+  left: 10px;
+  position: absolute;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: auto;
+  z-index: 2;
+}
+body button#Btn_Voltar.Active {
+  display: flex;
+}
+body div#Container_Imgs_Perfil_Jogadores {
+  position: absolute;
+  top: 10px;
+  left: 60px;
+  display: flex;
+  gap: 5px;
+}
+body div#Container_Imgs_Perfil_Jogadores img {
+  width: 30px;
+  height: 30px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+body div#Container_Background {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.6196078431);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+body .Pages {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+body .Pages#Pag_Home.Active {
+  display: flex;
+}
+body .Pages#Pag_Home div {
+  width: 95%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+body .Pages#Pag_Home div h1 {
+  margin-bottom: 20px;
+}
+body .Pages#Pag_Home div h1 span {
+  color: var(--Vermelho);
+}
+body .Pages#Pag_Home div h1 span:first-child {
+  color: var(--Verde);
+}
+body .Pages#Pag_Criar_Sala.Active {
+  display: flex;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala {
+  width: 95%;
+  max-width: 380px;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala div#Container_Inputs_Criar_Sala {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala div#Container_Inputs_Criar_Sala div#Container_Checkboxes_Criar_Sala {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala div#Container_Inputs_Criar_Sala button {
+  width: 100%;
+  margin: 10px auto;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas .Select_Max_Alternativas {
+  padding: 0.5rem;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas .Select_Max_Alternativas:focus {
+  border-color: #4299e1;
+  box-shadow: 0 0 0 2px #bee3f8;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas .Select_Max_Alternativas:hover {
+  background-color: #edf2f7;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Tempo_Entre_Questoes {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Tempo_Entre_Questoes .Select_Tempo_Entre_Questoes {
+  padding: 0.5rem;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Tempo_Entre_Questoes .Select_Tempo_Entre_Questoes:focus {
+  border-color: #4299e1;
+  box-shadow: 0 0 0 2px #bee3f8;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Tempo_Entre_Questoes .Select_Tempo_Entre_Questoes:hover {
+  background-color: #edf2f7;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Quantidade_Questoes {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Quantidade_Questoes .Slider_Quantidade_Questoes {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  width: 100%;
+  height: 40px;
+  border-radius: 2px;
+  background: #e2e8f0;
+  outline: none;
+  transition: background 0.3s ease-in-out;
+  border: 1px solid black;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Quantidade_Questoes .Slider_Quantidade_Questoes::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4299e1;
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Quantidade_Questoes .Slider_Quantidade_Questoes::-webkit-slider-thumb:hover {
+  background: #2b6cb0;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Quantidade_Questoes .Slider_Quantidade_Questoes::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4299e1;
+  cursor: pointer;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Quantidade_Questoes .Slider_Quantidade_Questoes::-moz-range-thumb:hover {
+  background: #2b6cb0;
+}
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Quantidade_Questoes .Valor_Quantidade_Questoes {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4a5568;
+}
+body .Pages#Pag_Entrar_Em_Sala.Active {
+  display: flex;
+}
+body .Pages#Pag_Entrar_Em_Sala div#Container_Entrar_Em_Sala {
+  width: 95%;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+}
+body .Pages#Pag_Entrar_Em_Sala div#Container_Entrar_Em_Sala input {
+  margin-bottom: 30px;
+}
+body .Pages#Pag_Entrar_Em_Sala div#Container_Entrar_Em_Sala div#Container_Salas_Criadas {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+body .Pages#Pag_Entrar_Em_Sala div#Container_Entrar_Em_Sala div#Container_Salas_Criadas div.Salas {
+  padding: 15px 20px;
+  border-radius: 4px;
+  border: 1px solid black;
+  width: 100%;
+  cursor: pointer;
+}
+body .Pages#Pag_Entrar_Em_Sala div#Container_Entrar_Em_Sala div#Container_Salas_Criadas div.Salas:hover {
+  transition: 0.2s scale ease-in-out;
+  scale: 1.05;
+}
+body .Pages#Pag_Entrar_Em_Sala div#Container_Entrar_Em_Sala button#Btn_Atualizar_Salas {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 4px;
+  border: 1px solid var(--Preto);
+  padding: 15px 20px;
+  background-color: transparent;
+  width: 95%;
+  max-width: 380px;
+  cursor: pointer;
+}
+body .Pages#Pag_Entrar_Em_Sala div#Container_Entrar_Em_Sala button#Btn_Atualizar_Salas.Bloqueado {
+  cursor: not-allowed;
+  color: #898989;
+  border: 1px solid #898989;
+}
+body .Pages#Pag_Quiz.Active {
+  display: flex;
+}
+body .Pages#Pag_Quiz div#Container_Pag_Quiz {
+  max-width: 1000px;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  /* Inicialmente a div começa com tamanho 0 */
+  height: 0;
+  opacity: 0;
+  padding: 0;
+  /* Fazemos a transição para altura, opacidade e padding */
+  transition: height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+  overflow: hidden; /* Para não mostrar conteúdo que sai da área visível */
+}
+body .Pages#Pag_Quiz div#Container_Pag_Quiz.Active {
+  height: auto; /* Deixa o tamanho da div automático */
+  opacity: 1; /* Torna a div visível */
+  padding: 20px; /* Adiciona um padding para que ela tenha um preenchimento legal */
+}
+body .Pages#Pag_Quiz div#Container_Pag_Quiz div#Container_Cronometro {
+  position: absolute;
+  top: 20px;
+  font-size: 1.5em;
+}
+body .Pages#Pag_Quiz div#Container_Pag_Quiz div#Container_Pergunta {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid var(--Preto);
+  background-color: transparent;
+  padding: 23px 20px;
+}
+body .Pages#Pag_Quiz div#Container_Pag_Quiz div#Container_Alternativas {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+body .Pages#Pag_Quiz div#Container_Pag_Quiz div#Container_Alternativas button {
+  padding: 23px 20px;
+  width: 100%;
+  position: relative;
+}
+body .Pages#Pag_Quiz div#Container_Pag_Quiz div#Container_Alternativas button.Active {
+  cursor: default !important;
+  scale: 1 !important;
+  border: 1px solid rgba(0, 0, 0, 0.418);
+}
+body .Pages#Pag_Quiz div#Container_Pag_Quiz div#Container_Alternativas button.Active p {
+  opacity: 0.4;
+}
+body .Pages#Pag_Quiz div#Container_Pag_Quiz div#Container_Alternativas button.Blocked {
+  cursor: default !important;
+  scale: 1 !important;
+}
+body .Pages#Pag_Quiz div#Container_Pag_Quiz div#Container_Alternativas button div.Container_Imgs_Users_Alternativas {
+  position: absolute;
+  display: flex;
+  left: 0;
+  top: -20%;
+  gap: 2px;
+}
+body .Pages#Pag_Quiz div#Container_Pag_Quiz div#Container_Alternativas button div.Container_Imgs_Users_Alternativas img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  overflow: hidden;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body .Pages#Pag_Espera {
+  flex-direction: column;
+  gap: 24px;
+}
+body .Pages#Pag_Espera.Active {
+  display: flex;
+}
+body .Pages#Pag_Espera span#Codigo_Da_Sala {
+  position: fixed;
+  bottom: 20px;
+}
+body .Pages#Pag_Espera button {
+  max-width: 400px;
+  position: fixed;
+  bottom: 50px;
+}
+body .Pages#Pag_Fim_De_Jogo {
+  flex-direction: column;
+  gap: 20px;
+}
+body .Pages#Pag_Fim_De_Jogo.Active {
+  display: flex;
+}
+body .Pages#Pag_Fim_De_Jogo div#Container_Btns_Pag_Fim_De_Jogo {
+  width: 100%;
+  max-width: 830px;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+body .Pages#Pag_Fim_De_Jogo p#P_Codigo_Fim_De_Jogo {
+  position: fixed;
+  bottom: 20px;
+}
+body .Pages#Pag_Fim_De_Jogo .Ranking_Container {
+  width: 90%;
+  max-width: 800px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: scale(0.9);
+  animation: zoomIn 0.5s ease forwards;
+}
+body .Pages#Pag_Fim_De_Jogo .ranking-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 15px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+body .Pages#Pag_Fim_De_Jogo .ranking-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 2px solid #ddd;
+}
+body .Pages#Pag_Fim_De_Jogo .ranking-item .info {
+  flex: 1;
+}
+body .Pages#Pag_Fim_De_Jogo .ranking-item .info .name {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+body .Pages#Pag_Fim_De_Jogo .ranking-item .info .email {
+  font-size: 0.9rem;
+  color: #555;
+}
+body .Pages#Pag_Fim_De_Jogo .ranking-item .bar {
+  position: relative;
+  height: 20px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+body .Pages#Pag_Fim_De_Jogo .ranking-item .bar span {
+  display: block;
+  height: 100%;
+  background: #4f46e5;
+  width: 0%;
+  transition: width 1s ease-in-out;
+}
+body .Pages#Pag_Fim_De_Jogo .ranking-item .points {
+  font-size: 0.8rem;
+  color: #333;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes zoomIn {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}/*# sourceMappingURL=Home.css.map */

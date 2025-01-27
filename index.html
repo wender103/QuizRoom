@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizRoom</title>
+    <link rel="stylesheet" href="Assets/Style/Home/Home.css">
+</head>
+<body>
+    <button id="Btn_Voltar">
+        <img src="Assets/Imgs/Icons/Voltar.svg" alt="Voltar">
+    </button>
+
+    <div id="Container_Imgs_Perfil_Jogadores"></div>
+
+    <div id="Container_Background"></div>
+
+    <section class="Pages Active" id="Pag_Home">
+        <div id="Container_Btns_Pag_Home">
+            <h1><span>Q</span>uiz<span>R</span>oom</h1>
+            <button id="Btn_Pag_Criar_Sala" class="Btn_Padrao Btns_Pags">Criar Sala</button>
+            <button id="Btn_Pag_Entrar_Em_Sala" class="Btn_Padrao Btns_Pags">Entrar Em Sala</button>
+        </div>
+    </section>
+
+    <section class="Pages" id="Pag_Criar_Sala">
+        <div id="Container_Criar_Sala">
+            <h1 id="H1_Criar_Sala">Criar Sala</h1>
+
+            <div id="Container_Inputs_Criar_Sala">
+                <input type="text" id="Input_Nome_Sala" placeholder="Nome da Sala">
+                <input type="text" id="Input_Tema_Sala" placeholder="Tema da Sala">
+
+                <div id="Container_Checkboxes_Criar_Sala">
+                    <input type="checkbox" id="Checkbox_Sala_Publica" checked="true">
+                    <label for="Checkbox_Sala_Publica">Sala Pública</label>
+                </div>
+
+                <div class="Container_Quantidade_Questoes">
+                    <label for="Quantidade_Questoes" class="Label_Quantidade_Questoes">
+                        Quantas questões deseja? 🎯
+                    </label>
+                    <input 
+                        type="range" 
+                        id="Quantidade_Questoes" 
+                        class="Slider_Quantidade_Questoes" 
+                        min="1" 
+                        max="50" 
+                        value="10"
+                        oninput="AtualizarQuantidadeQuestoes(this.value)" 
+                    />
+                    <div class="Valor_Quantidade_Questoes">
+                        <span id="Questoes_Selecionadas">10 questões</span>
+                    </div>
+                </div>
+
+
+                <div class="Container_Select_Max_Alternativas">
+                    <label for="Select_Max_Alternativas" class="Label_Select_Max_Alternativas">
+                        Quantas alternativas a questão terá?
+                    </label>
+                    <select name="max_alternativas" id="Select_Max_Alternativas" class="Select_Max_Alternativas">
+                        <option value="2">2 alternativas</option>
+                        <option value="4">4 alternativas</option>
+                        <option value="6">6 alternativas</option>
+                        <option value="8">8 alternativas</option>
+                        <option value="10">10 alternativas</option>
+                    </select>
+                </div>
+
+                <div class="Container_Tempo_Entre_Questoes">
+                    <label for="Tempo_Entre_Questoes" class="Label_Tempo_Entre_Questoes">
+                        Quanto tempo deseja entre cada questão? ⏱️
+                    </label>
+                    <select name="tempo_entre_questoes" id="Tempo_Entre_Questoes" class="Select_Tempo_Entre_Questoes">
+                        <option value="5">5 segundos</option>
+                        <option value="10">10 segundos</option>
+                        <option value="15">15 segundos</option>
+                        <option value="30">30 segundos</option>
+                        <option value="60">1 minuto</option>
+                        <option value="120">2 minutos</option>
+                        <option value="300">5 minutos</option>
+                        <option value="600">10 minutos</option>
+                        <option value="1800">30 minutos</option>
+                        <option value="3600">1 hora</option>
+                    </select>
+                </div>
+
+                <button id="Btn_Criar_Sala" class="Btn_Padrao" onclick="Criar_Sala()">Criar Sala</button>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="Pages" id="Pag_Entrar_Em_Sala">
+        <div id="Container_Entrar_Em_Sala">
+            <h1>Entrar Em Uma Sala</h1>
+            <input type="text" placeholder="Digite O Código Da Sala" id="Input_Entrar_Sala_Pelo_Codigo">
+
+            <p>Salas Públicas</p>
+
+            <div id="Container_Salas_Criadas">
+            </div>
+
+            <button id="Btn_Atualizar_Salas" onclick="Carregar_Salas_Criadas()">Atualizar Salas</button>
+        </div>
+    </section>
+
+    <section class="Pages" id="Pag_Espera">
+        <h1>Esperando Jogadores</h1>
+        <p>Aguarde Enquanto Os Jogadores Se Conectam</p>
+        <button id="Btn_Comecar_Quiz" class="Btn_Padrao" onclick="Comecar_Quiz()">Começar</button>
+        <span id="Codigo_Da_Sala"></span>
+    </section>
+
+    <section class="Pages" id="Pag_Quiz">
+        <div id="Container_Pag_Quiz">
+            <div id="Container_Cronometro"></div>
+
+            <div id="Container_Pergunta">
+                <p id="p_Pergunta"></p>
+            </div>
+
+            <div id="Container_Alternativas"></div>
+        </div>
+    </section>
+
+    <section class="Pages" id="Pag_Fim_De_Jogo">
+        <p>A sala está reaberta! Agora novas pessoas podem entrar!</p>
+        <div class="Ranking_Container" id="Container_Ranking"></div>
+
+        <div id="Container_Btns_Pag_Fim_De_Jogo">
+            <button id="Btn_Jogar_Novamente" class="Btn_Padrao" onclick="Jogar_Novamente()">Jogar Novamente</button>
+            <button id="Btn_Personalizar_Sala" class="Btn_Padrao" onclick="Abrir_Personalizar_Sala()">Personalizar Sala</button>
+            <button id="Btn_Sair_Da_Sala" class="Btn_Padrao" onclick="Adversario_Saiu_Da_Sala()">Sair Da Sala</button>
+        </div>
+
+        <p id="P_Codigo_Fim_De_Jogo"></p>
+    </section>
+
+    <!--? Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+        <p id="P_Codigo_Fim_De_Jogo"></p>
+    </section>
+
+    <!--? Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+    <script src="Assets/Js/Firebase.js"></script>
+
+    <!--? My Scripts -->
+    <script src="Assets/Js/Home.js"></script>
+    <script src="Assets/Js/Chat_Gpt.js"></script>
+    <script src="Assets/Js/Sala.js"></script>
+</body>
+</html>

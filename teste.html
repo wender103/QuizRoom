@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .ranking-container {
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transform: scale(0.9);
+            animation: zoomIn 0.5s ease forwards;
+        }
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 15px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        .ranking-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ddd;
+        }
+        .ranking-item .info {
+            flex: 1;
+        }
+        .ranking-item .info .name {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .ranking-item .info .email {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .ranking-item .bar {
+            position: relative;
+            height: 20px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .ranking-item .bar span {
+            display: block;
+            height: 100%;
+            background: #4f46e5;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+        .ranking-item .points {
+            font-size: 0.8rem;
+            color: #333;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ranking-container" id="ranking"></div>
+
+    <script>
+        function Create_Ranking(data) {
+            const rankingContainer = document.getElementById('ranking')
+            rankingContainer.innerHTML = ''
+
+            // Ordena os usuários por pontos em ordem decrescente
+            const sortedData = data.sort((a, b) => b.Pontos - a.Pontos)
+
+            // Renderiza o ranking
+            sortedData.forEach((user, index) => {
+                const item = document.createElement('div')
+                item.className = 'ranking-item'
+                item.style.animationDelay = `${index * 0.2}s`
+
+                item.innerHTML = `
+                    <img src="${user.Foto_Perfil}" alt="${user.Nome}">
+                    <div class="info">
+                        <div class="name">${user.Nome}</div>
+                        <div class="email">${user.Email}</div>
+                    </div>
+                    <div class="bar">
+                        <span style="width: 0%"></span>
+                    </div>
+                    <div class="points">${user.Pontos} pontos</div>
+                `
+
+                rankingContainer.appendChild(item)
+
+                // Anima a barra de pontuação após adicionar ao DOM
+                setTimeout(() => {
+                    item.querySelector('.bar span').style.width = `${Math.min(user.Pontos / 1000, 100)}%`
+                }, 100)
+            })
+        }
+
+        // Exemplo de dados
+        const data = [
+            {
+                "Nome": "Wender",
+                "Pontos": 1020,
+                "Foto_Perfil": "https://lh3.googleusercontent.com/a/ACg8ocLORnV8_ppr6EzS7FEQagjpdBEbeK7wRZ780iNpYnVTeO9lqg=s96-c",
+                "Respostas": ["C) Jonas", "A) Miriam", "D) Mateus", "c) Salomão", null, "b) São Tiago"],
+                "Email": "wendermarquesmarques@gmail.com"
+            },
+            {
+                "Email": "wendertestes01@gmail.com",
+                "Nome": "Wender Natanael Marques Vieira dos Santos",
+                "Respostas": ["B) Moisés", "D) Raquel", "B) Simão", "b) Davi"],
+                "Pontos": 3213140,
+                "Foto_Perfil": "https://lh3.googleusercontent.com/a/ACg8ocKWBaUWPYbV9ueG50eoMx3P6eoiIaJnpRBvLuecEEXLK0lcfQ=s96-c"
+            }
+        ]
+
+        // Cria o ranking com os dados
+        Create_Ranking(data)
+    </script>
+</body>
+</html>
