@@ -1,4 +1,4 @@
-const apiKey = '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' // Substitua pela sua chave
+const apiKey = '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' // Substitua pela sua chave
 const siteUrl = 'https://seusite.com' // Substitua pela URL do seu site
 const siteName = 'Chat com IA' // Nome do seu site
 
