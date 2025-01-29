@@ -1,5 +1,5 @@
-const apiKey = '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' // Substitua pela sua chave
-const siteUrl = 'https://seusite.com' // Substitua pela URL do seu site
+const apiKey = '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' // Substitua pela sua chave
+const siteUrl = 'https://wender103.github.io/QuizRoom/' // Substitua pela URL do seu site
 const siteName = 'Chat com IA' // Nome do seu site
 
 
@@ -33,6 +33,7 @@ async function Enviar_Prompt(userMessage) {
 
         const data = await response.json()
         const aiMessage = data.choices[0].message.content
+        console.log(aiMessage)
         return(aiMessage)
     } catch (error) {
         alert('Erro: Não foi possível obter uma resposta da IA. 😔')
