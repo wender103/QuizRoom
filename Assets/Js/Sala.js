@@ -4,6 +4,7 @@ let Esta_Personalizando_Sala = false
 const Input_Nome_Sala = document.getElementById('Input_Nome_Sala')
 const Input_Tema_Sala = document.getElementById('Input_Tema_Sala')
 const Quantidade_Questoes = document.getElementById('Quantidade_Questoes')
+const Select_Dificuldade = document.getElementById('Select_Dificuldade')
 const Select_Max_Alternativas = document.getElementById('Select_Max_Alternativas')
 const Tempo_Entre_Questoes = document.getElementById('Tempo_Entre_Questoes')
 
@@ -26,6 +27,7 @@ function Criar_Sala() {
                     Numero_Da_Pergunta: -1,
                     Max_Perguntas: parseInt(Quantidade_Questoes.value),
                     Max_Alternativas: parseInt(Select_Max_Alternativas.value),
+                    Dificuldade: Select_Dificuldade.value,
                     Intervalo_Questao: { Horas, Minutos, Segundos },
                     Time: ''
                 },

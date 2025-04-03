@@ -1,43 +1,36 @@
-const apiKey = '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' // Substitua pela sua chave
-const siteUrl = 'https://wender103.github.io/QuizRoom/' // Substitua pela URL do seu site
-const siteName = 'Chat com IA' // Nome do seu site
+const apiKey = 'AIzaSyCPOgQxs2HeishfhsEvo548lrmj8jEJNl0'
+const siteUrl = 'https://wender103.github.io/QuizRoom/'
+const siteName = 'Chat com IA'
 
 
 async function Enviar_Prompt(userMessage) {
     if (!userMessage) return
 
     try {
-        
-        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${apiKey}`,
-                "HTTP-Referer": siteUrl,
-                "X-Title": siteName,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: "openai/gpt-3.5-turbo",
-                messages: [
+                contents: [
                     {
-                        role: "user",
-                        content: userMessage
+                        parts: [{ text: userMessage }]
                     }
                 ]
             })
         })
 
         if (!response.ok) {
-            throw new Error('Erro ao obter resposta da IA.')
+            throw new Error(`Erro ${response.status}: ${response.statusText}`)
         }
 
         const data = await response.json()
-        const aiMessage = data.choices[0].message.content
+        const aiMessage = data.candidates?.[0]?.content?.parts?.[0]?.text || "Erro ao processar resposta."
         console.log(aiMessage)
-        return(aiMessage)
+        return aiMessage
     } catch (error) {
-        alert('Erro: Não foi possível obter uma resposta da IA. 😔')
-        Excluir_Sala(Sala_Atual.Criador)
+        alert(`Erro: ${error.message} 😔`)
         console.error(error)
     }
 }
@@ -202,24 +195,26 @@ function Comecar_Quiz() {
     async function Perguntar() {
         if(Sala_Atual.Quiz.Numero_Da_Pergunta < Sala_Atual.Quiz.Max_Perguntas) {
             try {
-            const Resposta = await Enviar_Prompt(
-                `Crie uma única pergunta extremamente difícil com o tema: "${Sala_Atual.Tema}". A pergunta deve conter exatamente ${Sala_Atual.Quiz.Max_Alternativas} alternativas (deve incluir apenas uma resposta correta). 
+                console.log(Sala_Atual.Quiz.Dificuldade)
+                
+                const Resposta = await Enviar_Prompt(
+                    `Crie uma única pergunta de dificuldade ${Sala_Atual.Quiz.Dificuldade} com o tema: "${Sala_Atual.Tema}". A pergunta deve conter exatamente ${Sala_Atual.Quiz.Max_Alternativas} alternativas (deve incluir apenas uma resposta correta). 
 
-                Use a seguinte estrutura:
-                1. Escreva a pergunta.
-                2. Liste as alternativas, uma abaixo da outra, identificadas por letras (a, b, c, d, etc.), respeitando o número de alternativas solicitado (${Sala_Atual.Quiz.Max_Alternativas}).
-                3. Ao final, diga qual é a alternativa correta, utilizando exatamente o formato: "Alternativa correta: [letra da alternativa]) [conteúdo da alternativa]".
+                    Use a seguinte estrutura:
+                    1. Escreva a pergunta.
+                    2. Liste as alternativas, uma abaixo da outra, identificadas por letras (a, b, c, d, etc.), respeitando o número de alternativas solicitado (${Sala_Atual.Quiz.Max_Alternativas}).
+                    3. Ao final, diga qual é a alternativa correta, utilizando exatamente o formato: "Alternativa correta: [letra da alternativa]) [conteúdo da alternativa]".
 
-                Aqui está um exemplo do formato esperado, lembrando que a quantidade de alternativas deve ser igual ao número solicitado:
-                Pergunta: Qual é o carro esportivo mais rápido do mundo em termos de velocidade máxima?
+                    Aqui está um exemplo do formato esperado, lembrando que a quantidade de alternativas deve ser igual ao número solicitado:
+                    Pergunta: Qual é o carro esportivo mais rápido do mundo em termos de velocidade máxima?
 
-                a) Lamborghini Aventador  
-                b) Bugatti Veyron  
-                c) Koenigsegg Agera RS  
-                d) McLaren Speedtail  
+                    a) Lamborghini Aventador  
+                    b) Bugatti Veyron  
+                    c) Koenigsegg Agera RS  
+                    d) McLaren Speedtail  
 
-                Alternativa correta: c) Koenigsegg Agera RS`
-            )
+                    Alternativa correta: c) Koenigsegg Agera RS`
+                )
 
                 const Resposta_Formatada = Parse_Question(Resposta)
 

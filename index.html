@@ -31,6 +31,18 @@
                 <input type="text" id="Input_Nome_Sala" placeholder="Nome da Sala">
                 <input type="text" id="Input_Tema_Sala" placeholder="Tema da Sala">
 
+                <div class="Container_Select_Dificuldade">
+                    <label for="Select_Dificuldade" class="Label_Select_Dificuldade">
+                        Selecione a dificuldade da questão:
+                    </label>
+                    <select name="dificuldade" id="Select_Dificuldade" class="Select_Dificuldade">
+                        <option value="facil">Fácil</option>
+                        <option value="medio">Médio</option>
+                        <option value="dificil">Difícil</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+
                 <div id="Container_Checkboxes_Criar_Sala">
                     <input type="checkbox" id="Checkbox_Sala_Publica" checked="true">
                     <label for="Checkbox_Sala_Publica">Sala Pública</label>
@@ -153,7 +165,7 @@
 
     <!--? My Scripts -->
     <script src="Assets/Js/Home.js"></script>
-    <script src="Assets/Js/Chat_Gpt.js"></script>
+    <script src="Assets/Js/Gemini.js"></script>
     <script src="Assets/Js/Sala.js"></script>
 </body>
 </html>

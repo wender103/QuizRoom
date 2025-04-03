@@ -114,13 +114,13 @@ body {
                     }
                 }
 
-                .Container_Select_Max_Alternativas {
+                .Container_Select_Max_Alternativas, .Container_Select_Dificuldade {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
                     gap: 8px;
 
-                    .Select_Max_Alternativas {
+                    .Select_Max_Alternativas, .Select_Dificuldade {
                         padding: 0.5rem; // 8px
                         border: 1px solid #000000; // Light gray
                         border-radius: 2px;

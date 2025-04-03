@@ -96,13 +96,13 @@ body .Pages#Pag_Criar_Sala div#Container_Criar_Sala div#Container_Inputs_Criar_S
   width: 100%;
   margin: 10px auto;
 }
-body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas {
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas, body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Dificuldade {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas .Select_Max_Alternativas {
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas .Select_Max_Alternativas, body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas .Select_Dificuldade, body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Dificuldade .Select_Max_Alternativas, body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Dificuldade .Select_Dificuldade {
   padding: 0.5rem;
   border: 1px solid #000000;
   border-radius: 2px;
@@ -111,11 +111,11 @@ body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Altern
   outline: none;
   transition: all 0.3s ease-in-out;
 }
-body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas .Select_Max_Alternativas:focus {
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas .Select_Max_Alternativas:focus, body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas .Select_Dificuldade:focus, body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Dificuldade .Select_Max_Alternativas:focus, body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Dificuldade .Select_Dificuldade:focus {
   border-color: #4299e1;
   box-shadow: 0 0 0 2px #bee3f8;
 }
-body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas .Select_Max_Alternativas:hover {
+body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas .Select_Max_Alternativas:hover, body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Max_Alternativas .Select_Dificuldade:hover, body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Dificuldade .Select_Max_Alternativas:hover, body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Select_Dificuldade .Select_Dificuldade:hover {
   background-color: #edf2f7;
 }
 body .Pages#Pag_Criar_Sala div#Container_Criar_Sala .Container_Tempo_Entre_Questoes {
