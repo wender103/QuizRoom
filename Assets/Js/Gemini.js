@@ -192,24 +192,78 @@ function Comecar_Quiz() {
     async function Perguntar() {
         if(Sala_Atual.Quiz.Numero_Da_Pergunta < Sala_Atual.Quiz.Max_Perguntas) {
             try {                
+                const variacaoContexto = Date.now()
+                const enfoquesPorDificuldade = {
+                facil: ['conceito básico', 'exemplo cotidiano', 'identificação visual', 'função principal'],
+                medio: ['aplicação prática', 'comparação simples', 'contexto histórico', 'termo técnico'],
+                dificil: ['mecanismo interno', 'análise crítica', 'exceção notável', 'detalhe avançado'],
+                expert: ['cenário hipotético', 'solução não trivial', 'dados específicos', 'integração multidisciplinar']
+                }
+
+                const angulosPorDificuldade = {
+                facil: ['o que é', 'para que serve', 'onde encontramos', 'exemplo simples'],
+                medio: ['como funciona', 'diferenças básicas', 'quando surgiu', 'problemas comuns'],
+                dificil: ['por que ocorre', 'consequências complexas', 'limitações', 'otimizações'],
+                expert: ['críticas especializadas', 'soluções alternativas', 'análise quantitativa', 'tendências futuras']
+                }
+
                 const Resposta = await Enviar_Prompt(
-                    `Crie uma única pergunta de dificuldade ${Sala_Atual.Quiz.Dificuldade} com o tema: "${Sala_Atual.Tema}". A pergunta deve conter exatamente ${Sala_Atual.Quiz.Max_Alternativas} alternativas (deve incluir apenas uma resposta correta). 
+                    `Crie uma pergunta de múltipla escolha ÚNICA com:
 
-                    Use a seguinte estrutura:
-                    1. Escreva a pergunta.
-                    2. Liste as alternativas, uma abaixo da outra, identificadas por letras (a, b, c, d, etc.), respeitando o número de alternativas solicitado (${Sala_Atual.Quiz.Max_Alternativas}).
-                    3. Ao final, diga qual é a alternativa correta, utilizando exatamente o formato: "Alternativa correta: [letra da alternativa]) [conteúdo da alternativa]".
+                    PARÂMETROS-CHAVE:
+                    • Tema: "${Sala_Atual.Tema}"
+                    • Dificuldade: ${Sala_Atual.Quiz.Dificuldade}
+                    • Alternativas: ${Sala_Atual.Quiz.Max_Alternativas} (UMA correta)
+                    • Contexto único: ${variacaoContexto}
 
-                    Aqui está um exemplo do formato esperado, lembrando que a quantidade de alternativas deve ser igual ao número solicitado:
-                    Pergunta: Qual é o carro esportivo mais rápido do mundo em termos de velocidade máxima?
+                    DIRETRIZES POR DIFICULDADE:
+                    ${Sala_Atual.Quiz.Dificuldade === 'facil' ? 
+                    "- Use linguagem acessível\n- Foque em reconhecimento\n- Alternativas com erros óbvios (para iniciantes)" :
+                    Sala_Atual.Quiz.Dificuldade === 'medio' ?
+                    "- Exija compreensão básica\n- Inclua 1-2 termos técnicos\n- Erros sutis nas alternativas" :
+                    Sala_Atual.Quiz.Dificuldade === 'dificil' ?
+                    "- Requira conhecimento aplicado\n- Use casos específicos\n- Alternativas com meias-verdades" :
+                    "- Desafie especialistas\n- Inclua dados precisos\n- Alternativas com armadilhas sofisticadas"}
 
-                    a) Lamborghini Aventador  
-                    b) Bugatti Veyron  
-                    c) Koenigsegg Agera RS  
-                    d) McLaren Speedtail  
+                    ESTRUTURA CRIATIVA:
+                    • Enfoque: ${enfoquesPorDificuldade[Sala_Atual.Quiz.Dificuldade].sort(() => 0.5 - Math.random())[0]}
+                    • Ângulo: ${angulosPorDificuldade[Sala_Atual.Quiz.Dificuldade].sort(() => 0.5 - Math.random())[0]}
+                    ${Sala_Atual.Quiz.Dificuldade === 'expert' ? '• Inclua: ' + ['fórmula relevante', 'dado estatístico', 'caso de estudo real', 'citação técnica'].sort(() => 0.5 - Math.random())[0] : ''}
 
-                    Alternativa correta: c) Koenigsegg Agera RS`
+                    FORMATO EXIGIDO:
+                    Pergunta: [Texto completo com complexidade adequada ao nível ${Sala_Atual.Quiz.Dificuldade}]
+
+                    ${Array.from({length: Sala_Atual.Quiz.Max_Alternativas}, (_, i) => 
+                    `${String.fromCharCode(97 + i)}) [Alternativa ${String.fromCharCode(65 + i)} - ${Sala_Atual.Quiz.Dificuldade === 'facil' ? 'erro claro' : 
+                        Sala_Atual.Quiz.Dificuldade === 'expert' ? 'armadilha especializada' : 'distrator plausível'}]`).join('\n')}
+
+                    Alternativa correta: [letra]) [Resposta tecnicamente precisa]
+
+                    EXEMPLO ${Sala_Atual.Quiz.Dificuldade.toUpperCase()}:
+                    Pergunta: ${Sala_Atual.Quiz.Dificuldade === 'facil' ? 
+                    `Qual destes é um componente básico de ${Sala_Atual.Tema.includes('redes') ? 'uma rede de computadores?' : 'um sistema operacional?'}` :
+                    Sala_Atual.Quiz.Dificuldade === 'expert' ?
+                    `Considerando a equação ${Sala_Atual.Tema.includes('física') ? 'de Schrödinger' : 'de Black-Scholes'}, qual parâmetro tem maior impacto em ${Sala_Atual.Tema.includes('física') ? 'decoerência quântica' : 'hedge delta-neutral'}?` :
+                    `Em ${Sala_Atual.Tema.includes('programação') ? 'OOP' : 'gestão ágil'}, qual princípio ${Sala_Atual.Tema.includes('programação') ? 'determina encapsulamento?' : 'prioriza entrega contínua?'}`}
+
+                    ${Array.from({length: Sala_Atual.Quiz.Max_Alternativas}, (_, i) => 
+                    `${String.fromCharCode(97 + i)}) ${gerarExemploAlternativa(Sala_Atual)}`).join('\n')}
+
+                    Alternativa correta: ${Sala_Atual.Quiz.Dificuldade === 'facil' ? 'a) ' + (Sala_Atual.Tema.includes('redes') ? 'Roteador' : 'Kernel') :
+                                        Sala_Atual.Quiz.Dificuldade === 'expert' ? 'c) ' + (Sala_Atual.Tema.includes('física') ? 'Constante de Planck reduzida' : 'Volatilidade implícita') :
+                                        'b) ' + (Sala_Atual.Tema.includes('programação') ? 'Modificadores de acesso' : 'Princípio de Pareto')}`
                 )
+
+                // Função auxiliar para exemplos (simulada)
+                function gerarExemploAlternativa(sala) {
+                const temas = {
+                    redes: ['Switch', 'Firewall', 'DNS', 'Cache CDN'],
+                    programação: ['Herança', 'Polimorfismo', 'Coesão', 'Acoplamento'],
+                    física: ['Massa', 'Carga elétrica', 'Spin', 'Superposição']
+                }
+                const t = Object.keys(temas).find(k => sala.Tema.includes(k)) || 'programação'
+                return temas[t][Math.floor(Math.random() * temas[t].length)]
+                }
 
                 const Resposta_Formatada = Parse_Question(Resposta)
 

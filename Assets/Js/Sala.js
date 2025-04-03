@@ -57,6 +57,7 @@ function Criar_Sala() {
         Sala_Atual.Quiz.Max_Perguntas = parseInt(Quantidade_Questoes.value)
         Sala_Atual.Quiz.Max_Alternativas = parseInt(Select_Max_Alternativas.value)
         Sala_Atual.Quiz.Intervalo_Questao = { Horas, Minutos, Segundos }
+        Sala_Atual.Quiz.Dificuldade = Select_Dificuldade.value,
 
         db.collection('Salas_QuizRoom').doc(Sala_Atual.Criador).update({
             Nome: Input_Nome_Sala.value,
@@ -64,6 +65,7 @@ function Criar_Sala() {
             Tema: Input_Tema_Sala.value,
             "Quiz.Max_Perguntas": parseInt(Quantidade_Questoes.value),
             "Quiz.Max_Alternativas": parseInt(Select_Max_Alternativas.value),
+            "Quiz.Dificuldade": Sala_Atual.Quiz.Dificuldade,
             "Quiz.Intervalo_Questao": {
                 Horas,
                 Minutos,

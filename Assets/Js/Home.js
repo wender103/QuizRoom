@@ -227,22 +227,3 @@ function Create_Ranking(data) {
     }, 100)
   })
 }
-
-const data = [
-  {
-    "Nome": "Wender",
-    "Pontos": 1020,
-    "Foto_Perfil": "https://lh3.googleusercontent.com/a/ACg8ocLORnV8_ppr6EzS7FEQagjpdBEbeK7wRZ780iNpYnVTeO9lqg=s96-c",
-    "Respostas": ["C) Jonas", "A) Miriam", "D) Mateus", "c) Salomão", null, "b) São Tiago"],
-    "Email": "wendermarquesmarques@gmail.com"
-  },
-  {
-    "Email": "wendertestes01@gmail.com",
-    "Nome": "Wender Natanael Marques Vieira dos Santos",
-    "Respostas": ["B) Moisés", "D) Raquel", "B) Simão", "b) Davi"],
-    "Pontos": 3213140,
-    "Foto_Perfil": "https://lh3.googleusercontent.com/a/ACg8ocKWBaUWPYbV9ueG50eoMx3P6eoiIaJnpRBvLuecEEXLK0lcfQ=s96-c"
-  }
-]
-
-Create_Ranking(data)
