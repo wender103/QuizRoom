@@ -27,7 +27,6 @@ async function Enviar_Prompt(userMessage) {
 
         const data = await response.json()
         const aiMessage = data.candidates?.[0]?.content?.parts?.[0]?.text || "Erro ao processar resposta."
-        console.log(aiMessage)
         return aiMessage
     } catch (error) {
         alert(`Erro: ${error.message} 😔`)
@@ -142,8 +141,6 @@ function Ativar_Quiz(Novo_Quiz) {
                             
 
                             if(Sala_Atual.Quiz.Numero_Da_Pergunta > 0 && Sala_Atual.Jogadores[c].Respostas[Sala_Atual.Quiz.Numero_Da_Pergunta - 1] === undefined) {
-                                console.log('Caiu no if de ver a resposta n resopndida');
-                                
                                 Sala_Atual.Jogadores[c].Respostas[Sala_Atual.Quiz.Numero_Da_Pergunta - 1] == '#@$@$@$@#$@'
                             }
                             break
@@ -194,9 +191,7 @@ function Comecar_Quiz() {
 
     async function Perguntar() {
         if(Sala_Atual.Quiz.Numero_Da_Pergunta < Sala_Atual.Quiz.Max_Perguntas) {
-            try {
-                console.log(Sala_Atual.Quiz.Dificuldade)
-                
+            try {                
                 const Resposta = await Enviar_Prompt(
                     `Crie uma única pergunta de dificuldade ${Sala_Atual.Quiz.Dificuldade} com o tema: "${Sala_Atual.Tema}". A pergunta deve conter exatamente ${Sala_Atual.Quiz.Max_Alternativas} alternativas (deve incluir apenas uma resposta correta). 
 
